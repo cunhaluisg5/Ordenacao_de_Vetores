@@ -18,6 +18,8 @@ void metodo(FILE *arquivo);
 void asteriscos();
 FILE* abreArquivo(char modo, char caminho[30]);
 void fecharArquivo(FILE *arquivo);
+void imprimeVetorArquivo(int *v, int n, FILE *arquivo);
+void asteriscosArquivo(FILE *arquivo);
 
 int main()
 {
@@ -359,4 +361,22 @@ FILE* abreArquivo(char modo, char caminho[30]){
 
 void fecharArquivo(FILE *arquivo){
     fclose(arquivo);
+}
+
+void imprimeVetorArquivo(int *v, int n, FILE *arquivo){
+	int i;
+	for(i=0; i<n; i++){
+		if(i % 5 == 0){
+			fprintf(arquivo, "\n");
+		}
+		fprintf(arquivo, "V[%2d] = %2d\t", i + 1, v[i]);
+	}
+	fprintf(arquivo, "\n", i + 1, v[i]);
+}
+
+void asteriscosArquivo(FILE *arquivo){
+	int i;
+	for(i=0; i<76; i++){
+		fprintf(arquivo, "*");
+	}
 }
