@@ -4,6 +4,8 @@
 
 int *alocar(int n);
 void inserir(int *v, int n);
+int *liberar(int *v);
+void imprimir(int *v, int n);
 
 int main()
 {
@@ -29,5 +31,19 @@ void inserir(int *v, int n){
 	int i;
 	for(i=0; i<n; i++){
 		v[i] = rand() % 100;
+	}
+}
+
+int *liberar(int *v)
+{
+	if(v == NULL) return(NULL);
+	free(v); 
+	return(NULL); 
+}
+
+void imprimir(int *v, int n){
+	int i;
+	for(i=0; i<n; i++){
+		printf("V[%2d] = %2d\t", i + 1, v[i]);
 	}
 }
