@@ -11,6 +11,7 @@ void heapsort(int *v, int n);
 void selecao(int *v, int n);
 void insercao(int *v, int n);
 void shellsort(int *v, int n);
+void quicksort(int *v, int n);
 
 int main()
 {
@@ -146,4 +147,37 @@ void shellsort(int *v, int n){
 			v[k + span] = y;
 		}
 	}
+}
+
+void quicksort(int *v, int n){
+	comparacoes++;
+	if(n <= 1){
+		return;
+	}
+	int x = v[0];
+	int a = 1;
+	int b = n - 1;
+	int temp;
+	do{
+		while(a < n && v[a] <= x){
+			a++;
+		}
+		while(v[b] > x){
+			b--;
+		}
+		comparacoes++;
+		if(a < b){
+			movimentacoes++;
+			temp = v[a];
+			v[a] = v[b];
+			v[b] = temp;
+			a++;
+			b--;
+		}
+	}while(a <= b);
+	movimentacoes++;
+	v[0] = v[b];
+	v[b] = x;
+	quicksort(v, b);
+	quicksort(&v[a], n - a);
 }
