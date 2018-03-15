@@ -20,6 +20,8 @@ FILE* abreArquivo(char modo, char caminho[30]);
 void fecharArquivo(FILE *arquivo);
 void imprimeVetorArquivo(int *v, int n, FILE *arquivo);
 void asteriscosArquivo(FILE *arquivo);
+int comparacoes = 0;
+int movimentacoes = 0;
 
 int main()
 {
