@@ -10,6 +10,7 @@ void peneira(int *v, int raiz, int fundo);
 void heapsort(int *v, int n);
 void selecao(int *v, int n);
 void insercao(int *v, int n);
+void shellsort(int *v, int n);
 
 int main()
 {
@@ -126,5 +127,23 @@ void insercao(int *v, int n){
 		}
 		movimentacoes++;
 		v[i + 1] = x;
+	}
+}
+
+void shellsort(int *v, int n){
+	int i, j, k, span, y, incr[3] = {5, 3, 1};
+	for(i = 0; i < sizeof(incr); i++){
+		span = incr[i];
+		for(j = span; j < n; j++){
+			y = v[j];
+			comparacoes++;
+			for(k = j - span; k >= 0 && y < v[k]; k -= span){
+				comparacoes++;
+				movimentacoes++;
+				v[k + span] = v[k];
+			}
+			movimentacoes++;
+			v[k + span] = y;
+		}
 	}
 }
