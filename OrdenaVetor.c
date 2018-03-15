@@ -17,6 +17,7 @@ void mergeSort(int *v, int inicio, int fim);
 void metodo(FILE *arquivo);
 void asteriscos();
 FILE* abreArquivo(char modo, char caminho[30]);
+void fecharArquivo(FILE *arquivo);
 
 int main()
 {
@@ -354,4 +355,8 @@ FILE* abreArquivo(char modo, char caminho[30]){
         exit(0);
     }
     return arquivo;
+}
+
+void fecharArquivo(FILE *arquivo){
+    fclose(arquivo);
 }
