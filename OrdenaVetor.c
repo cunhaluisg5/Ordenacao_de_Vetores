@@ -8,6 +8,7 @@ int *liberar(int *v);
 void imprimir(int *v, int n);
 void peneira(int *v, int raiz, int fundo);
 void heapsort(int *v, int n);
+void selecao(int *v, int n);
 
 int main()
 {
@@ -93,4 +94,21 @@ void peneira(int *v, int raiz, int fundo) {
       pronto = 1;
 	}
   }
+}
+
+void selecao(int *v, int n){
+	int i, j, min, x;
+	for(i = 0; i < n-1; ++i) {
+		min = i;
+		for(j = i+1; j < n; ++j){
+			comparacoes++;
+			if(v[j] < v[min]){
+				min = j;
+			}
+		}
+		movimentacoes++;
+		x = v[i]; 
+		v[i] = v[min]; 
+		v[min] = x;
+	}
 }
