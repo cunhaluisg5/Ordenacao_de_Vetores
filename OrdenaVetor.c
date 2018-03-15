@@ -1,6 +1,6 @@
 #include<stdio.h>
-#include<stdlib.h>
 #include<time.h>
+#include<stdlib.h>
 
 int *alocar(int n);
 void inserir(int *v, int n);
@@ -25,7 +25,13 @@ int movimentacoes = 0;
 
 int main()
 {
+	srand(time(NULL));
+	FILE *arquivo;
+
+	arquivo = abreArquivo('g', "dados.txt");
+	metodo(arquivo);
 	
+	fecharArquivo(arquivo);
 }
 
 int *alocar(int n)
@@ -248,6 +254,13 @@ void mergeSort(int *v, int inicio, int fim) {
 	}
 }
 
+void asteriscos(){
+	int i;
+	for(i=0; i<76; i++){
+		printf("*");
+	}
+}
+
 void metodo(FILE *arquivo){
 	int j, *c, q, *v;
 	char opcao = 's';
@@ -331,13 +344,6 @@ void metodo(FILE *arquivo){
 		}
 		system("cls");
 		liberar(v);
-	}
-}
-
-void asteriscos(){
-	int i;
-	for(i=0; i<76; i++){
-		printf("*");
 	}
 }
 
