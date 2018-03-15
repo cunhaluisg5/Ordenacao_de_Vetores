@@ -3,6 +3,7 @@
 #include<time.h>
 
 int *alocar(int n);
+void inserir(int *v, int n);
 
 int main()
 {
@@ -22,4 +23,11 @@ int *alocar(int n)
     	return(NULL);
 	}     
 	return(v);
+}
+
+void inserir(int *v, int n){
+	int i;
+	for(i=0; i<n; i++){
+		v[i] = rand() % 100;
+	}
 }
