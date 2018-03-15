@@ -15,6 +15,8 @@ void quicksort(int *v, int n);
 void merge(int *v, int inicio, int meio, int fim);
 void mergeSort(int *v, int inicio, int fim);
 void metodo(FILE *arquivo);
+void asteriscos();
+FILE* abreArquivo(char modo, char caminho[30]);
 
 int main()
 {
@@ -325,4 +327,31 @@ void metodo(FILE *arquivo){
 		system("cls");
 		liberar(v);
 	}
+}
+
+void asteriscos(){
+	int i;
+	for(i=0; i<76; i++){
+		printf("*");
+	}
+}
+
+FILE* abreArquivo(char modo, char caminho[30]){
+    FILE *arquivo;
+    switch(modo){
+        case 'g':
+            arquivo = fopen(caminho,"wt"); 
+            break;
+        case 'l':
+            arquivo = fopen(caminho,"rt"); 
+            break;
+        case 'a':
+            arquivo = fopen(caminho,"a"); 
+            break;
+    }
+    if(arquivo==NULL){ 
+        printf("Não foi possível abrir o arquivo");
+        exit(0);
+    }
+    return arquivo;
 }
