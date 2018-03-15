@@ -9,6 +9,7 @@ void imprimir(int *v, int n);
 void peneira(int *v, int raiz, int fundo);
 void heapsort(int *v, int n);
 void selecao(int *v, int n);
+void insercao(int *v, int n);
 
 int main()
 {
@@ -110,5 +111,20 @@ void selecao(int *v, int n){
 		x = v[i]; 
 		v[i] = v[min]; 
 		v[min] = x;
+	}
+}
+
+void insercao(int *v, int n){
+	int i, j, x;
+	for(j = 1; j < n; ++j) {
+		x = v[j];
+		comparacoes++;
+		for(i = j-1; i >= 0 && v[i] > x; --i){
+			comparacoes++;
+			movimentacoes++;
+			v[i + 1] = v[i];
+		}
+		movimentacoes++;
+		v[i + 1] = x;
 	}
 }
