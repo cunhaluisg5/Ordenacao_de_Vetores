@@ -14,6 +14,7 @@ void shellsort(int *v, int n);
 void quicksort(int *v, int n);
 void merge(int *v, int inicio, int meio, int fim);
 void mergeSort(int *v, int inicio, int fim);
+void metodo(FILE *arquivo);
 
 int main()
 {
@@ -237,5 +238,91 @@ void mergeSort(int *v, int inicio, int fim) {
 		mergeSort(v, inicio, meio);
 		mergeSort(v, meio + 1, fim);
 		merge(v, inicio, meio, fim);
+	}
+}
+
+void metodo(FILE *arquivo){
+	int j, *c, q, *v;
+	char opcao = 's';
+	
+	while(opcao == 's' || opcao == 'S'){
+		printf("Informe o tamanho do vetor:\n");
+		scanf("%d", &q);
+		v = alocar(q);
+		printf("\n\tOs dados a seguir serao gravados no arquivo \"dados.txt\"\t\t\n\n");
+		sleep(3);
+		printf("Vetor de %d posicoes:\n\n", q);  
+		fprintf(arquivo, "Vetor de %d posicoes:\n\n", q); 
+		inserir(v, q);
+		imprimir(v,  q);
+		imprimeVetorArquivo(v, q, arquivo);
+		c = v;
+		printf("\n\n");
+		fprintf(arquivo, "\n\n"); 
+		asteriscos();
+		asteriscosArquivo(arquivo);
+			
+		for(j=0; j<6; j++)
+		{
+			comparacoes = 0;
+			movimentacoes = 0;
+			v = c;
+			switch(j){
+				case 0: {
+					printf("\n\nVetor de %d posicoes ordenado por Selecao:\n\n", q);
+					fprintf(arquivo, "\n\nVetor de %d posicoes ordenado por Selecao:\n\n", q);		
+					selecao(v, q);
+					break;
+				}
+				case 1: {
+					printf("\n\nVetor de %d posicoes ordenado por Insercao:\n\n", q);
+					fprintf(arquivo, "\n\nVetor de %d posicoes ordenado por Insercao:\n\n", q);
+					insercao(v, q);
+					break;
+				}
+				case 2: {
+					printf("\n\nVetor de %d posicoes ordenado por ShellSort:\n\n", q);
+					fprintf(arquivo, "\n\nVetor de %d posicoes ordenado por ShellSort:\n\n", q);
+					shellsort(v, q);
+					break;
+				}
+				case 3: {
+					printf("\n\nVetor de %d posicoes ordenado por QuickSort:\n\n", q);
+					fprintf(arquivo, "\n\nVetor de %d posicoes ordenado por QuickSort:\n\n", q);
+					quicksort(v, q);
+					break;
+				}
+				case 4: {
+					printf("\n\nVetor de %d posicoes ordenado por MergeSort:\n\n", q);
+					fprintf(arquivo, "\n\nVetor de %d posicoes ordenado por MergeSort:\n\n", q);
+					mergeSort(v, 0, q-1);
+					break;
+				}
+				case 5: {
+					printf("\n\nVetor de %d posicoes ordenado por HeapSort:\n\n", q);
+					fprintf(arquivo, "\n\nVetor de %d posicoes ordenado por HeapSort:\n\n", q);
+					heapsort(v, q);
+					break;
+				}
+			}
+			imprimir(v, q);
+			imprimeVetorArquivo(v, q, arquivo);
+			printf("\n\nPossui %d comparacoes e %d movimentacoes\n", comparacoes, movimentacoes);
+			fprintf(arquivo, "\nPossui %d comparacoes e %d movimentacoes\n", comparacoes, movimentacoes);
+			printf("\n");
+			fprintf(arquivo, "\n");
+			asteriscos();
+			asteriscosArquivo(arquivo);
+		}
+		printf("\n");
+		fprintf(arquivo, "\n");
+		opcao = 'a';
+		while(opcao != 's' && opcao != 'S' && opcao != 'n' && opcao != 'N'){
+			printf("\n\nDeseja ordenar mais algum vetor (S)im ou (N)ao ?))");
+			fflush(stdin);
+			scanf("%c", &opcao);
+		}
+		system("cls");
+		liberar(v);
 	}
 }
